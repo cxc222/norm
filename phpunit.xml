@@ -1,0 +1,9 @@
+<phpunit bootstrap="tests/init.php">
+  <testsuites>
+    <testsuite name="default">
+      <file>tests/DatabaseTest.php</file>
+      <file>tests/MySQLTest.php</file>
+      <file>tests/SQLiteTest.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>
