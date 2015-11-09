@@ -10,7 +10,7 @@
         }
     ],
     "autoload": {
-        "psr-4": { "Norm": "src" },
+        "psr-4": { "Norm": "src" }
     },
     "minimum-stability": "dev",
     "require": {
