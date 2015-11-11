@@ -178,6 +178,20 @@ class QueryBuilder
     }
 
     /**
+     * fetch a single row indexed by column numbers
+     * @see get
+     * @return array
+     * @throws \PDOException
+     */
+    function getNum($fields='*')
+    {
+        $this->limit(1);
+        $this->setFields($fields);
+        $stmt = $this->stmtSelect();
+        return $stmt->fetch(PDO::FETCH_NUM);
+    }
+
+    /**
      * select a single row as an instance of a class
      * @param string kls name of the class
      * @param string|array fields specify the fields to fetch
@@ -214,6 +228,16 @@ class QueryBuilder
         $stmt = $this->stmtSelect();
         $stmt->setFetchMode(PDO::FETCH_CLASS, $kls);
         return $stmt->fetchAll();
+    }
+
+    /**
+     * like getNum but returns multiple rows
+     */
+    function allNum($fields='*')
+    {
+        $this->setFields($fields);
+        $stmt = $this->stmtSelect();
+        return $stmt->fetchAll(PDO::FETCH_NUM);
     }
 
     /**
