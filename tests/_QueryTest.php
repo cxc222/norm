@@ -56,5 +56,17 @@ abstract class _QueryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($row['amount'], 100);
         $this->assertEquals($row['name'], 'jack');
     }
+
+    function testFlatArray()
+    {
+        $this->db->with('user')->batchInsert([
+                [1, 'jack'],
+                [2, 'rose'],
+            ],
+            'id, name'
+        );
+        $ids = $this->db->with('user')->where('id', '<', 3)->flatArray('id');
+        $this->assertEquals([1,2], $ids);
+    }
 }
 

@@ -254,6 +254,23 @@ class QueryBuilder
         return current($row);
     }
 
+    /**
+     * fetch one or more columns of one or more rows as a flat array
+     * @param str|array fields
+     */
+    function flatArray($fields='*')
+    {
+        $this->setFields($fields);
+        $stmt = $this->stmtSelect();
+        $ret = [];
+        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
+            foreach ($row as $v) {
+                $ret[] = $v;
+            }
+        }
+        return $ret;
+    }
+
     private function aggregate($fn, $field)
     {
         $this->setField("$fn($field)");
