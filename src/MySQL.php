@@ -65,7 +65,7 @@ class MySQL extends Database
             $stmt->fetch();
             $stmt->closeCursor();
             return TRUE;
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             return FALSE;
         }
     }

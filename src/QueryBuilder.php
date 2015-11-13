@@ -251,7 +251,9 @@ class QueryBuilder
         $this->setField($field);
         $stmt = $this->stmtSelect();
         $row = $stmt->fetch(PDO::FETCH_NUM);
-        return current($row);
+        if ($row)
+            return current($row);
+        return FALSE;
     }
 
     /**
