@@ -257,6 +257,16 @@ class QueryBuilder
     }
 
     /**
+     * 判定指定条件的数据是否存在
+     * @return boolean
+     */
+    function exists()
+    {
+        $val = $this->value('1');
+        return !!$val;
+    }
+
+    /**
      * fetch one or more columns of one or more rows as a flat array
      * @param str|array fields
      */
