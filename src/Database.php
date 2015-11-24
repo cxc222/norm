@@ -46,10 +46,8 @@ abstract class Database
         try {
             $this->pdo->beginTransaction();
             $ret = call_user_func_array($fn, $args);
-            if ($ret === FALSE)
-                $this->pdo->rollback();
-            else
-                $this->pdo->commit();
+            $this->pdo->commit();
+            return $ret;
         } catch(\Exception $ex) {
             $this->pdo->rollback();
             throw $ex;
