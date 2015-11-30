@@ -13,6 +13,7 @@ class QueryBuilder
     protected $table;
     protected $fields;
     protected $orderByStr;
+    protected $groupByStr;
     protected $limitN;
     protected $offsetN;
 
