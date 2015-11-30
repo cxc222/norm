@@ -109,6 +109,16 @@ class QueryBuilder
 
     /**
      * e.g.:
+     *   groupBy('rank')
+     * @return $this
+     */
+    function groupBy($field){
+        $this->groupByStr = $field;
+        return $this;
+    }
+
+    /**
+     * e.g.:
      *   orderBy('rank', 'name desc')
      * @return $this
      */
@@ -124,6 +134,10 @@ class QueryBuilder
         $cond = $this->conditionBuilder->condStr();
         if ($cond) {
             $sql[] = "WHERE $cond";
+        }
+
+        if ($this->groupByStr) {
+            $sql[] = "GROUP BY {$this->groupByStr}";
         }
 
         if ($this->orderByStr) {
