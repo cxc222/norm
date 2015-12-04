@@ -54,6 +54,38 @@ class QueryBuilder
     }
 
     /**
+     * leftJoin another table
+     * e.g.:
+     *   $db->with('user')->leftJoin('balance', 'user.id=balance.id')
+     * or:
+     *   $db->with('user AS u')->leftJoin('balance AS b', 'u.id = b.user_id')
+     * @param string table table name
+     * @param string on join condition
+     * @return QueryBuilder
+     */
+    function leftJoin($table, $on)
+    {
+        $this->table .= " LEFT JOIN $table ON $on";
+        return $this;
+    }
+
+    /**
+     * rightJoin another table
+     * e.g.:
+     *   $db->with('user')->rightJoin('balance', 'user.id=balance.id')
+     * or:
+     *   $db->with('user AS u')->rightJoin('balance AS b', 'u.id = b.user_id')
+     * @param string table table name
+     * @param string on join condition
+     * @return QueryBuilder
+     */
+    function rightJoin($table, $on)
+    {
+        $this->table .= " RIGHT JOIN $table ON $on";
+        return $this;
+    }
+
+    /**
      * where condition, using AND
      * e.g.:
      *   where('field', 10) // field = 10
